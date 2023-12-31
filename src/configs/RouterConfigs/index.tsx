@@ -1,5 +1,3 @@
-import { createTicket } from "../../services/Ticket"
-
 const customerRouters = {
     info: '/info',
     notification: '/notification',
