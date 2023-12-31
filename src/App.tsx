@@ -5,8 +5,6 @@ import routes from "./routes";
 import { Route, Routes } from "react-router-dom";
 import PrivateRoute from "./components/PrivateRoute";
 import NotFound from "./components/NotFound";
-import { AdminLayout } from "./layouts";
-import { ManageAccount } from "./pages/Admin";
 
 function App() {
   return (

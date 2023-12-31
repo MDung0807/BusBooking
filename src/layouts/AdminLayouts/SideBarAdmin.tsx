@@ -28,17 +28,17 @@ const items2 = [
     "1",
     <UserOutlined />,
     [
-      GetItem("Danh sách tài khoản",  RouterConfigs.adminRouters.home, ),
+      GetItem("Danh sách tài khoản",  RouterConfigs.adminRouters.manageAccount, ),
       GetItem("Thống kê tài khoản",  '1-1', ),
     ],
   ),
   GetItem(
-    "Quản lý công ty",
+    "Quản lý nhà xe",
     "2",
     <ProfileOutlined />,
     [
-      GetItem("Danh sách công ty",  RouterConfigs.adminRouters.manageCompany, ),
-      GetItem("Thống kê công ty",  '2-1', ),
+      GetItem("Danh sách nhà xe",  RouterConfigs.adminRouters.manageCompany, ),
+      GetItem("Thống kê nhà xe",  '2-1', ),
     ],
   ),
 
@@ -91,6 +91,16 @@ const items2 = [
       GetItem("Thống kê loại giá",  '7-1', ),
     ],
   ),
+
+  GetItem(
+    "Quản lý tuyến đường",
+    "8",
+    <img src= "https://cdn2.iconfinder.com/data/icons/moscow-transport/100/__-512.png" alt="" style={{width: "25px", height: "25px"}}/>,
+    [
+      GetItem("Danh sách tuyến đường",  RouterConfigs.adminRouters.routes, ),
+      GetItem("Thống kê tuyến",  '8-1', ),
+    ],
+  ),
 ];
 
 //#endregion
@@ -99,19 +109,19 @@ const items2 = [
 const SideBarAdmin = ({collapsed, SetCollapsed,}: { collapsed: boolean; SetCollapsed: any;}) => {
 
   const location = useLocation();
-  const selectMenu = items2.map((item) => {
+  const selectMenu = items2.filter((item) => {
+    if(item?.key === location.pathname) {
+      return item.key
+    }
     if (item && 'children' in item) {
-      const foundChild = item.children?.find((child) => child?.key === location.pathname);
-  
-      if (foundChild) {
-        return foundChild.key; // Trả về child.key nếu child.key === location.pathname
+      const child = item.children?.find((child) => child?.key === location.pathname);
+      if (child) {
+        return item.key;
       }
     }
-  
     return null;
   });
   
-  const filteredSelectMenu = selectMenu.filter((item) => item !== null);
   console.log(selectMenu)
   
 
@@ -157,7 +167,7 @@ const handleClick = (e: any) => {
       <Menu
         mode="inline"
         defaultSelectedKeys={[location.pathname]}
-        defaultOpenKeys={["sub1"]}
+        defaultOpenKeys={[selectMenu[0]?.key ? selectMenu[0].key.toString(): '1']}
         style={{ height: "100%"}}
         items={items2}
         theme="light"

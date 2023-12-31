@@ -1,4 +1,4 @@
-const ManageCompany = () => {
+const Company = () => {
     return (
         <div>
             <h1>ManageCompany</h1>
@@ -7,4 +7,4 @@ const ManageCompany = () => {
     );
     };
 
-export default ManageCompany;
+export default Company;

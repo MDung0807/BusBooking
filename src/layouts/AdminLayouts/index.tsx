@@ -26,7 +26,7 @@ const AdminLayout = ({ children }: { children: ReactNode }) => {
           children={children}
         />
       </Layout>
-      <AdminFooter/>
+      <AdminFooter Collapse={collapsed}/>
     </div>
   );
 };
