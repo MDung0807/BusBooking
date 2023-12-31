@@ -1,5 +1,6 @@
 import React, { ReactNode, useState } from "react";
 import {
+  HomeOutlined,
   LogoutOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
@@ -17,7 +18,7 @@ const AdminHeader = ({
   collapsed,
   SetCollapsed,
   children,
-}: {
+}: {  
   collapsed: boolean;
   SetCollapsed: any;
   children: React.ReactNode;
@@ -79,10 +80,28 @@ console.log("loading");
           <Button icon={<LogoutOutlined style={{fontSize:30}}/>} onClick={showPopconfirm} style={{border: 0, paddingRight: "60px", marginBottom:"7px"}}></Button>
         </Popconfirm>
       </Header>
+      <Breadcrumb
+    items={[
+      {
+        href: '',
+        title: <HomeOutlined />,
+      },
+      {
+        href: '',
+        title: (
+          <>
+            <UserOutlined />
+            <span>Application List</span>
+          </>
+        ),
+      },
+      {
+        title: 'Application',
+      },
+    ]}
+  />
       <Content
         style={{
-          margin: "24px 16px",
-          padding: 24,
           minHeight: 280,
         }}
       >
